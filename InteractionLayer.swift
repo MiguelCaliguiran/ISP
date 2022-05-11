@@ -16,7 +16,8 @@ class InteractionLayer : Layer, KeyDownHandler {
    static let paddleRight2 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/4/Cristiano-Ronaldo-Transparent.png")
    static let paddleLeft3 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/5/Lionel-Messi.png")
    static let paddleRight3 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/4/Cristiano-Ronaldo-Transparent.png")
-
+   static let paddleLeft4 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/5/Lionel-Messi.png")
+   static let paddleRight4 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/4/Cristiano-Ronaldo-Transparent.png")
    
    init() {
        self.player = InteractionLayer.players
@@ -34,17 +35,20 @@ class InteractionLayer : Layer, KeyDownHandler {
         insert(entity: InteractionLayer.paddleRight2, at: .front)
         insert(entity: InteractionLayer.paddleLeft3, at: .front)
         insert(entity: InteractionLayer.paddleRight3, at: .front)
-        
+        insert(entity: InteractionLayer.paddleLeft4, at: .front)
+        insert(entity: InteractionLayer.paddleRight4, at: .front)
    }
 
     override func preSetup(canvasSize: Size, canvas: Canvas) {
         let canvasBoundingRect = Rect(size:canvasSize)
         InteractionLayer.paddleLeft.move(to:Point(x: 40, y: canvasSize.center.y))
         InteractionLayer.paddleRight.move(to:Point(x: (canvasBoundingRect.size.width - 120), y: canvasSize.center.y))
-        InteractionLayer.paddleLeft2.move(to:Point(x: 120, y: canvasSize.center.y))
+        InteractionLayer.paddleLeft2.move(to:Point(x: 200, y: canvasSize.center.y))
         InteractionLayer.paddleRight2.move(to:Point(x: (canvasBoundingRect.size.width - 300), y: canvasSize.center.y))
-        InteractionLayer.paddleLeft3.move(to:Point(x: 200, y: canvasSize.center.y))    
+        InteractionLayer.paddleLeft3.move(to:Point(x: 400, y: canvasSize.center.y))    
         InteractionLayer.paddleRight3.move(to:Point(x: (canvasBoundingRect.size.width - 450), y: canvasSize.center.y))
+        InteractionLayer.paddleLeft4.move(to:Point(x: 600, y: canvasSize.center.y))
+        InteractionLayer.paddleRight4.move(to:Point(x: (canvasBoundingRect.size.width - 700), y: canvasSize.center.y))
         dispatcher.registerKeyDownHandler(handler: self)
     }
 
@@ -92,7 +96,18 @@ class InteractionLayer : Layer, KeyDownHandler {
                 InteractionLayer.paddleRight3.rectangle.rect.topLeft.y += 20
                 print("\(InteractionLayer.paddleRight3.rectangle.rect.topLeft.y)")
             }
-            
+            if key == "r" && InteractionLayer.paddleLeft4.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleLeft4.rectangle.rect.topLeft.y -= 20
+            } else if key == "f" && InteractionLayer.paddleLeft4.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleLeft4.rectangle.rect.topLeft.y += 20
+                print("\(InteractionLayer.paddleLeft4.rectangle.rect.topLeft.y)")
+            }
+            if key == "y" && InteractionLayer.paddleRight4.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleRight4.rectangle.rect.topLeft.y -= 20
+            } else if key == "h" && InteractionLayer.paddleRight4.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleRight4.rectangle.rect.topLeft.y += 20
+                print("\(InteractionLayer.paddleRight4.rectangle.rect.topLeft.y)")
+            }
             
 
             }
@@ -108,12 +123,14 @@ class InteractionLayer : Layer, KeyDownHandler {
         let leftPaddleContainment = leftPaddleBoundingRect.containment(target: ballBoundingRect)
         let leftPaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
         if leftPaddleTargetContainmentSet.isSubset(of: leftPaddleContainment) {
+            print("LEFT PADDLE IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
         let rightPaddleBoundingRect = InteractionLayer.paddleRight.boundingRect()
         let rightPaddleContainment = rightPaddleBoundingRect.containment(target: ballBoundingRect)
         let rightPaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
         if rightPaddleTargetContainmentSet.isSubset(of: rightPaddleContainment) {
+            print("RighT PADDLE IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
     }
