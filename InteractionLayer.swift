@@ -11,8 +11,13 @@ class InteractionLayer : Layer, KeyDownHandler {
     let player : Int
    static let ball = Ball()
    static let paddleLeft = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/5/Lionel-Messi.png")
-   static let paddleRight = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pikpng.com/pngl/m/68-689456_cristiano-ronaldo-clipart-ronaldo-png-cristiano-ronaldo-no.png")
+   static let paddleRight = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/4/Cristiano-Ronaldo-Transparent.png")
+   static let paddleLeft2 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/5/Lionel-Messi.png")
+   static let paddleRight2 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/4/Cristiano-Ronaldo-Transparent.png")
+   static let paddleLeft3 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/5/Lionel-Messi.png")
+   static let paddleRight3 = Paddle(rect:Rect(size:Size(width:10, height:100)), playerURL: "https://www.pngall.com/wp-content/uploads/4/Cristiano-Ronaldo-Transparent.png")
 
+   
    init() {
        self.player = InteractionLayer.players
        InteractionLayer.players += 1
@@ -25,13 +30,21 @@ class InteractionLayer : Layer, KeyDownHandler {
 
         insert(entity: InteractionLayer.paddleLeft, at: .front)
         insert(entity: InteractionLayer.paddleRight, at: .front)
-    }
+        insert(entity: InteractionLayer.paddleLeft2, at: .front)
+        insert(entity: InteractionLayer.paddleRight2, at: .front)
+        insert(entity: InteractionLayer.paddleLeft3, at: .front)
+        insert(entity: InteractionLayer.paddleRight3, at: .front)
+        
+   }
 
     override func preSetup(canvasSize: Size, canvas: Canvas) {
         let canvasBoundingRect = Rect(size:canvasSize)
-        InteractionLayer.paddleLeft.move(to:Point(x: 25, y: canvasSize.center.y))
-        InteractionLayer.paddleRight.move(to:Point(x: (canvasBoundingRect.size.width - 35), y: canvasSize.center.y))
-
+        InteractionLayer.paddleLeft.move(to:Point(x: 40, y: canvasSize.center.y))
+        InteractionLayer.paddleRight.move(to:Point(x: (canvasBoundingRect.size.width - 120), y: canvasSize.center.y))
+        InteractionLayer.paddleLeft2.move(to:Point(x: 120, y: canvasSize.center.y))
+        InteractionLayer.paddleRight2.move(to:Point(x: (canvasBoundingRect.size.width - 300), y: canvasSize.center.y))
+        InteractionLayer.paddleLeft3.move(to:Point(x: 200, y: canvasSize.center.y))    
+        InteractionLayer.paddleRight3.move(to:Point(x: (canvasBoundingRect.size.width - 450), y: canvasSize.center.y))
         dispatcher.registerKeyDownHandler(handler: self)
     }
 
@@ -40,22 +53,50 @@ class InteractionLayer : Layer, KeyDownHandler {
 
         let height = 800
         //if player == 0 {
-            if key == "w" && InteractionLayer.paddleLeft.rectangle.rect.topLeft.y >= 0{
-                InteractionLayer.paddleLeft.rectangle.rect.topLeft.y -= 10
-            } else if key == "s" && InteractionLayer.paddleLeft.rectangle.rect.topLeft.y <= height{
-                InteractionLayer.paddleLeft.rectangle.rect.topLeft.y += 10
+            if key == "q" && InteractionLayer.paddleLeft.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleLeft.rectangle.rect.topLeft.y -= 20
+            } else if key == "a" && InteractionLayer.paddleLeft.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleLeft.rectangle.rect.topLeft.y += 20
                 print("\(InteractionLayer.paddleLeft.rectangle.rect.topLeft.y)")
             }
         //} else if player == 1 {
             if key == "o" && InteractionLayer.paddleRight.rectangle.rect.topLeft.y >= 0{
-                InteractionLayer.paddleRight.rectangle.rect.topLeft.y -= 10
+                InteractionLayer.paddleRight.rectangle.rect.topLeft.y -= 20
             } else if key == "l" && InteractionLayer.paddleRight.rectangle.rect.topLeft.y <= height{
-                InteractionLayer.paddleRight.rectangle.rect.topLeft.y += 10
+                InteractionLayer.paddleRight.rectangle.rect.topLeft.y += 20
                 print("\(InteractionLayer.paddleRight.rectangle.rect.topLeft.y)")
             }
         //}
+            if key == "w" && InteractionLayer.paddleLeft2.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleLeft2.rectangle.rect.topLeft.y -= 20
+            } else if key == "s" && InteractionLayer.paddleLeft2.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleLeft2.rectangle.rect.topLeft.y += 20
+                print("\(InteractionLayer.paddleLeft2.rectangle.rect.topLeft.y)")
+            }
 
-    }
+            if key == "i" && InteractionLayer.paddleRight2.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleRight2.rectangle.rect.topLeft.y -= 20
+            } else if key == "k" && InteractionLayer.paddleRight2.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleRight2.rectangle.rect.topLeft.y += 20
+                print("\(InteractionLayer.paddleRight2.rectangle.rect.topLeft.y)")
+            }
+            if key == "e" && InteractionLayer.paddleLeft3.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleLeft3.rectangle.rect.topLeft.y -= 20
+            } else if key == "d" && InteractionLayer.paddleLeft3.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleLeft3.rectangle.rect.topLeft.y += 20
+                print("\(InteractionLayer.paddleLeft3.rectangle.rect.topLeft.y)")
+            }
+            if key == "u" && InteractionLayer.paddleRight3.rectangle.rect.topLeft.y >= 0{
+                InteractionLayer.paddleRight3.rectangle.rect.topLeft.y -= 20
+            } else if key == "j" && InteractionLayer.paddleRight3.rectangle.rect.topLeft.y <= height{
+                InteractionLayer.paddleRight3.rectangle.rect.topLeft.y += 20
+                print("\(InteractionLayer.paddleRight3.rectangle.rect.topLeft.y)")
+            }
+            
+            
+
+            }
+            
 
     override func postTeardown() {
         dispatcher.unregisterKeyDownHandler(handler: self)
