@@ -59,9 +59,11 @@ class Ball: RenderableEntity, MouseMoveHandler {
     }
 
     override func calculate(canvasSize:Size) {
+
         // First, move to the new position
         ellipse.center += Point(x:velocityX, y:velocityY)
 
+       
         // Form a bounding rectangle around the canvas
         let canvasBoundingRect = Rect(size:canvasSize)
 
@@ -85,18 +87,12 @@ class Ball: RenderableEntity, MouseMoveHandler {
             velocityX = -velocityX*3
             ellipse.radiusX /= 2
 
-            if tooFarLeft {
-                currentScoreRight += 1
-                ellipse.center = canvasSize.center
-            } else if tooFarRight {
-                currentScoreLeft += 1
-                ellipse.center = canvasSize.center
-            }
+            
         }
 
-        if velocityX < -10 {
+        if velocityX < -6 {
             velocityX += 1
-        } else if velocityX > 10 {
+        } else if velocityX > 6 {
             velocityX -= 1
         }
 
@@ -110,9 +106,9 @@ class Ball: RenderableEntity, MouseMoveHandler {
             ellipse.radiusY /= 2
         }
 
-        if velocityY < -10 {
+        if velocityY < -6 {
             velocityY += 1
-        } else if velocityY > 10 {
+        } else if velocityY > 6 {
             velocityY -= 1
         }
 
@@ -121,14 +117,31 @@ class Ball: RenderableEntity, MouseMoveHandler {
         }
 
         /***** THIS IS AN EXERCISE LEFT TO THE READER *****/
-    }
 
+        let scoreRectLeftContainment = scoreRectLeft.containment(target: ballBoundingRect)
+        let scoreRectRightContainment = scoreRectLeft.containment(target: ballBoundingRect) 
+/*
+        if scoreRectLeftContainment.intersection {
+            currentScoreRight += 1
+            ellipse.center = canvasSize.center
+        } else if tooFarRight {
+            currentScoreLeft += 1
+            ellipse.center = canvasSize.center
+            }
+            
+ */
+
+    }
+    
     override func setup(canvasSize: Size, canvas: Canvas) {
         // Position the ellipse at the center of the canvas
         ellipse.center = canvasSize.center
         dispatcher.registerMouseMoveHandler(handler:self)
         canvas.setup(soccerBall)
-        scoreRectLeft = Rect(topLeft: Point 
+        let width = Int(Double(canvasSize.width)*0.06416667)
+        scoreRectLeft = Rect(topLeft: Point(x: 0, y: canvasSize.height/3), size: Size(width: width, height: canvasSize.height/3))
+        scoreRectRight = Rect(topLeft: Point(x: canvasSize.width-width, y: canvasSize.height/3), size: Size(width: width, height: canvasSize.height/3))  
+     
     }
 
     override func render(canvas:Canvas) {

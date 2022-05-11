@@ -27,7 +27,7 @@ class InteractionLayer : Layer, KeyDownHandler {
 
         // We insert our RenderableEntities in the constructor
         insert(entity: InteractionLayer.ball, at: .front)
-        InteractionLayer.ball.changeVelocity(velocityX: 10, velocityY: 10)
+        InteractionLayer.ball.changeVelocity(velocityX: 6, velocityY: 6)
 
         insert(entity: InteractionLayer.paddleLeft, at: .front)
         insert(entity: InteractionLayer.paddleRight, at: .front)
