@@ -18,7 +18,7 @@ class ScoreBoard: RenderableEntity {
     }
 
     override func render(canvas:Canvas) {
-        let strokeStyle = StrokeStyle(color:Color(.blue))
+        let strokeStyle = StrokeStyle(color:Color(.black))
         let lineWidth = LineWidth(width:5)
         score = Text(location: Point(x:500,y:50), text:"\(currentScore)")
         score.font = "50pt Arial"

@@ -6,7 +6,7 @@ class Ball: RenderableEntity, MouseMoveHandler {
 
     let ellipse = Ellipse(center:Point(x:0, y:0), radiusX:30, radiusY:30, fillMode:.fillAndStroke)
     let strokeStyle = StrokeStyle(color:Color(.orange))
-    let fillStyle = FillStyle(color:Color(.red))
+    let fillStyle = FillStyle(color:Color(.black))
     let lineWidth = LineWidth(width:5)
 
     var velocityX : Int
@@ -43,9 +43,9 @@ class Ball: RenderableEntity, MouseMoveHandler {
 
         targetRadius = ellipse.radiusX
         scoreLeft = Text(location:Point(x:100,y:100), text:"")
-        scoreLeft.font = "34pt Arial"
+        scoreLeft.font = "50pt Times New Roman"
         scoreRight = Text(location:Point(x:100,y:100), text:"")
-        scoreRight.font = "34pt Arial"
+        scoreRight.font = "50pt Times New Roman"
         // Using a meaningful name can be helpful for debugging
         super.init(name:"Ball")
     }

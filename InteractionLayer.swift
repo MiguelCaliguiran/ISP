@@ -27,7 +27,7 @@ class InteractionLayer : Layer, KeyDownHandler {
 
         // We insert our RenderableEntities in the constructor
         insert(entity: InteractionLayer.ball, at: .front)
-        InteractionLayer.ball.changeVelocity(velocityX: 10, velocityY: 20)
+        InteractionLayer.ball.changeVelocity(velocityX: 20, velocityY: 20)
 
         insert(entity: InteractionLayer.paddleLeft, at: .front)
         insert(entity: InteractionLayer.paddleRight, at: .front)
@@ -133,6 +133,16 @@ class InteractionLayer : Layer, KeyDownHandler {
             print("RighT PADDLE IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
+        let ballBoundingRect2 = InteractionLayer.ball.boundingRect()
+        let left2PaddleBoundingRect = InteractionLayer.paddleLeft2.boundingRect()
+        let left2PaddleContainment = left2PaddleBoundingRect.containment(target: ballBoundingRect)
+        let left2PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
+        if left2PaddleTargetContainmentSet.isSubset(of: left2PaddleContainment) {
+            print("LEFT PADDLE 2 IMPACTED")
+            InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
+        }
+
+        
     }
 }
 
