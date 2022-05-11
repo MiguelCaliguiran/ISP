@@ -87,6 +87,14 @@ class Ball: RenderableEntity, MouseMoveHandler {
             velocityX = -velocityX*3
             ellipse.radiusX /= 2
 
+            if tooFarLeft {
+                currentScoreRight += 1
+                ellipse.center = canvasSize.center
+            } else if tooFarRight {
+                currentScoreLeft += 1
+                ellipse.center = canvasSize.center
+            }
+            
             
         }
 

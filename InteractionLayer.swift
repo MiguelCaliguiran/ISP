@@ -42,13 +42,13 @@ class InteractionLayer : Layer, KeyDownHandler {
     override func preSetup(canvasSize: Size, canvas: Canvas) {
         let canvasBoundingRect = Rect(size:canvasSize)
         InteractionLayer.paddleLeft.move(to:Point(x: 40, y: canvasSize.center.y))
-        InteractionLayer.paddleRight.move(to:Point(x: (canvasBoundingRect.size.width - 120), y: canvasSize.center.y))
+        InteractionLayer.paddleRight.move(to:Point(x: (canvasBoundingRect.size.width - 180), y: canvasSize.center.y))
         InteractionLayer.paddleLeft2.move(to:Point(x: 200, y: canvasSize.center.y))
-        InteractionLayer.paddleRight2.move(to:Point(x: (canvasBoundingRect.size.width - 300), y: canvasSize.center.y))
+        InteractionLayer.paddleRight2.move(to:Point(x: (canvasBoundingRect.size.width - 350), y: canvasSize.center.y))
         InteractionLayer.paddleLeft3.move(to:Point(x: 400, y: canvasSize.center.y))    
-        InteractionLayer.paddleRight3.move(to:Point(x: (canvasBoundingRect.size.width - 450), y: canvasSize.center.y))
+        InteractionLayer.paddleRight3.move(to:Point(x: (canvasBoundingRect.size.width - 600), y: canvasSize.center.y))
         InteractionLayer.paddleLeft4.move(to:Point(x: 600, y: canvasSize.center.y))
-        InteractionLayer.paddleRight4.move(to:Point(x: (canvasBoundingRect.size.width - 700), y: canvasSize.center.y))
+        InteractionLayer.paddleRight4.move(to:Point(x: (canvasBoundingRect.size.width - 800), y: canvasSize.center.y))
         dispatcher.registerKeyDownHandler(handler: self)
     }
 

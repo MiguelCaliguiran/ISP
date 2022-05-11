@@ -18,6 +18,7 @@ class Paddle: RenderableEntity {
     }
 
     override func setup(canvasSize: Size, canvas: Canvas) {
+        rect.size = Size(width: canvasSize.width/12, height: canvasSize.height/12)
         canvas.setup(playerImage)
     }
 
@@ -50,7 +51,7 @@ class Paddle: RenderableEntity {
         let tooFarUp = paddleBoundingRect.topLeft.y < canvasBoundingRect.topLeft.y
         let tooFarDown = paddleBoundingRect.bottomLeft.y > canvasBoundingRect.bottomLeft.y
 
-        rect = Rect(topLeft: rectangle.rect.topLeft, size: Size(width: 100, height: 100))
+        rect.topLeft =  rectangle.rect.topLeft
 
         //if tooFarUp {
         //self.move(to: Point(x:paddleBoundingRect.topLeft.x,y:paddleBoundingRect.topLeft.y))
