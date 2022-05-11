@@ -27,7 +27,7 @@ class InteractionLayer : Layer, KeyDownHandler {
 
         // We insert our RenderableEntities in the constructor
         insert(entity: InteractionLayer.ball, at: .front)
-        InteractionLayer.ball.changeVelocity(velocityX: 20, velocityY: 20)
+        InteractionLayer.ball.changeVelocity(velocityX: 10, velocityY: 10)
 
         insert(entity: InteractionLayer.paddleLeft, at: .front)
         insert(entity: InteractionLayer.paddleRight, at: .front)
@@ -141,19 +141,41 @@ class InteractionLayer : Layer, KeyDownHandler {
             print("LEFT PADDLE 2 IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
-        let right2PaddleBoundingRect = InteractionLayer.paddleRight.boundingRect()
+        let right2PaddleBoundingRect = InteractionLayer.paddleRight2.boundingRect()
         let right2PaddleContainment = right2PaddleBoundingRect.containment(target: ballBoundingRect)
         let right2PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
         if right2PaddleTargetContainmentSet.isSubset(of: right2PaddleContainment) {
             print("RighT PADDLE IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
-        let ballBoundingRect2 = InteractionLayer.ball.boundingRect()
-        let left3PaddleBoundingRect = InteractionLayer.paddleLeft2.boundingRect()
+        let ballBoundingRect3 = InteractionLayer.ball.boundingRect()
+        let left3PaddleBoundingRect = InteractionLayer.paddleLeft3.boundingRect()
         let left3PaddleContainment = left3PaddleBoundingRect.containment(target: ballBoundingRect)
         let left3PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
         if left3PaddleTargetContainmentSet.isSubset(of: left3PaddleContainment) {
             print("LEFT PADDLE 2 IMPACTED")
+            InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
+        }
+        let right3PaddleBoundingRect = InteractionLayer.paddleRight3.boundingRect()
+        let right3PaddleContainment = right3PaddleBoundingRect.containment(target: ballBoundingRect)
+        let right3PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
+        if right3PaddleTargetContainmentSet.isSubset(of: right3PaddleContainment) {
+            print("RighT PADDLE IMPACTED")
+            InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
+        }
+        let ballBoundingRect4 = InteractionLayer.ball.boundingRect()
+        let left4PaddleBoundingRect = InteractionLayer.paddleLeft4.boundingRect()
+        let left4PaddleContainment = left4PaddleBoundingRect.containment(target: ballBoundingRect)
+        let left4PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
+        if left4PaddleTargetContainmentSet.isSubset(of: left4PaddleContainment) {
+            print("LEFT PADDLE 2 IMPACTED")
+            InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
+        }
+        let right4PaddleBoundingRect = InteractionLayer.paddleRight4.boundingRect()
+        let right4PaddleContainment = right4PaddleBoundingRect.containment(target: ballBoundingRect)
+        let right4PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
+        if right4PaddleTargetContainmentSet.isSubset(of: right4PaddleContainment) {
+            print("RighT PADDLE IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
 

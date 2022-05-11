@@ -21,6 +21,9 @@ class Ball: RenderableEntity, MouseMoveHandler {
     var currentScoreLeft = 0
     var currentScoreRight = 0
 
+    var scoreRectLeft = Rect()
+    var scoreRectRight = Rect()
+    
     func onMouseMove(globalLocation: Point, movement: Point) {
     }
     let soccerBall : Image    
@@ -71,7 +74,7 @@ class Ball: RenderableEntity, MouseMoveHandler {
         let tooFarRight = ballBoundingRect.topLeft.x + ballBoundingRect.size.width > canvasBoundingRect.topLeft.x + canvasBoundingRect.size.width
 
         let tooFarUp = ballBoundingRect.topLeft.y < canvasBoundingRect.topLeft.y /***** THIS IS AN EXERCISE LEFT TO THE READER *****/
-        let tooFarDown = ballBoundingRect.topLeft.y + ballBoundingRect.size.height > canvasBoundingRect.topLeft.y + canvasBoundingRect.size.height /***** THIS IS AN EXERCISE LEFT TO THE READER *****/
+        let tooFarDown = ballBoundingRect.topLeft.y + ballBoundingRect.size.height > canvasBoundingRect.topLeft.y + canvasBoundingRect.size.height /***** THIS IS AN EXERCISE LEFT TO THE REvADER *****/
 
         scoreLeft.text = "\(currentScoreLeft)"
         scoreRight.text = "\(currentScoreRight)"
@@ -84,14 +87,16 @@ class Ball: RenderableEntity, MouseMoveHandler {
 
             if tooFarLeft {
                 currentScoreRight += 1
+                ellipse.center = canvasSize.center
             } else if tooFarRight {
                 currentScoreLeft += 1
+                ellipse.center = canvasSize.center
             }
         }
 
-        if velocityX < -3 {
+        if velocityX < -10 {
             velocityX += 1
-        } else if velocityX > 3 {
+        } else if velocityX > 10 {
             velocityX -= 1
         }
 
@@ -105,9 +110,9 @@ class Ball: RenderableEntity, MouseMoveHandler {
             ellipse.radiusY /= 2
         }
 
-        if velocityY < -5 {
+        if velocityY < -10 {
             velocityY += 1
-        } else if velocityY > 5 {
+        } else if velocityY > 10 {
             velocityY -= 1
         }
 
@@ -123,6 +128,7 @@ class Ball: RenderableEntity, MouseMoveHandler {
         ellipse.center = canvasSize.center
         dispatcher.registerMouseMoveHandler(handler:self)
         canvas.setup(soccerBall)
+        scoreRectLeft = Rect(topLeft: Point 
     }
 
     override func render(canvas:Canvas) {
