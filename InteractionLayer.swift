@@ -141,6 +141,21 @@ class InteractionLayer : Layer, KeyDownHandler {
             print("LEFT PADDLE 2 IMPACTED")
             InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
         }
+        let right2PaddleBoundingRect = InteractionLayer.paddleRight.boundingRect()
+        let right2PaddleContainment = right2PaddleBoundingRect.containment(target: ballBoundingRect)
+        let right2PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
+        if right2PaddleTargetContainmentSet.isSubset(of: right2PaddleContainment) {
+            print("RighT PADDLE IMPACTED")
+            InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
+        }
+        let ballBoundingRect2 = InteractionLayer.ball.boundingRect()
+        let left3PaddleBoundingRect = InteractionLayer.paddleLeft2.boundingRect()
+        let left3PaddleContainment = left3PaddleBoundingRect.containment(target: ballBoundingRect)
+        let left3PaddleTargetContainmentSet : ContainmentSet = [.overlapsRight, .contact]
+        if left3PaddleTargetContainmentSet.isSubset(of: left3PaddleContainment) {
+            print("LEFT PADDLE 2 IMPACTED")
+            InteractionLayer.ball.velocityX = -InteractionLayer.ball.velocityX
+        }
 
         
     }
